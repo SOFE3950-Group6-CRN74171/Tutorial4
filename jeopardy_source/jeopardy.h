@@ -1,7 +1,7 @@
 /*
  * Tutorial 4 Jeopardy Project for SOFE 3950U / CSCI 3020U: Operating Systems
  *
- * Copyright (C) 2015, <GROUP MEMBERS>
+ * Copyright (C) 2015, <Mostafa Abedi, Nathaniel Manoj, Calvin Reveredo>
  * All rights reserved.
  *
  */
@@ -14,6 +14,7 @@
 extern void tokenize(char *input, char **tokens);
 
 // Displays the game results for each player, their name and final score, ranked from first to last place
-extern void show_results(player *players, int num_players);
+extern void show_results(player *players);
 
+extern void run_game(char **token, player *players);
 #endif /* JEOPARDY_H_ */
