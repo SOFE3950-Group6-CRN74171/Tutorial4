@@ -139,6 +139,7 @@ void display_question(char *category, int value)
 	for (int i = 0; i < 12; i++) {
 		if ((questions[i].category == category) && (questions[i].value == value)) {
 			printf("Question: %s (%d)\n", questions[i].question, questions[i].value);
+			return;
 		}
 	}
 }
@@ -147,56 +148,31 @@ void display_question(char *category, int value)
  // Look into string comparison functions
 bool valid_answer(char *category, int value, char *answer)
 {
-	bool is_valid;
-
-	for (int i = 0; i < 12; i++) {
-		if ((questions[i].category == category) && (questions[i].value == value)) {
-			if (strcmp(questions[i].answer, answer) == 0) {
-
-				is_valid = true;
-			
-			} else {
-				
-				is_valid = false;
-			}
-		}
-	}
-
-	return is_valid;
+    for (int i = 0; i < 12; i++) {
+        if (strcmp(questions[i].category, category) == 0 && questions[i].value == value) {
+            return questions[i].answered;
+        }
+    }
+    return false; // Question not found
 }
 
 // Returns true if the question has already been answered
 bool already_answered(char *category, int value)
 {
-	bool answered;
-
-	for (int i = 0; i < 12; i++) {
-		
-		if ((questions[i].category == category) && (questions[i].value == value)) {
-			
-			if (questions[i].answered == true) {
-				
-				answered = true;
-
-			} else {
-
-				answered = false;
-
-			}
-		}
-	}
-
-	return answered;
+    for (int i = 0; i < 12; i++) {
+        if (strcmp(questions[i].category, category) == 0 && questions[i].value == value) {
+            return questions[i].answered;
+        }
+    }
+    return false; // Question not found
 }
 
 void question_answered(char *category, int value)
 {
-	for (int i = 0; i < 12; i++) {
-		
-		if ((questions[i].category == category) && (questions[i].value == value)) {
-			
-			questions[i].answered = true;
-
-		}
-	}
+    for (int i = 0; i < 12; i++) {
+        if (strcmp(questions[i].category, category) == 0 && questions[i].value == value) {
+            questions[i].answered = true;
+            return; // Exit loop once question is found and marked as answered
+        }
+    }
 }
