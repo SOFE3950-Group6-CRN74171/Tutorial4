@@ -16,5 +16,6 @@ extern void tokenize(char *input, char **tokens);
 // Displays the game results for each player, their name and final score, ranked from first to last place
 extern void show_results(player *players);
 
-extern void run_game(char **token, player *players);
+extern void run_game(char token[4][BUFFER_LEN], player *players);
+
 #endif /* JEOPARDY_H_ */
