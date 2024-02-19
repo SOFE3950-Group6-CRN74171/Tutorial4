@@ -8,7 +8,7 @@
 #ifndef JEOPARDY_H_
 #define JEOPARDY_H_
 
-#define MAX_LEN 256
+#define BUFFER_LEN 256
 // Processes the answer from the user containing what is or who is and tokenizes it to retrieve the answer.
 extern void tokenize(char *input, char tokens[4][BUFFER_LEN]); // Update the declaration
 extern void run_game(char token[4][BUFFER_LEN], player *players);
