@@ -151,7 +151,6 @@ int main(int argc, char *argv[]){
         
         // Check answer
         if(strcmp(tokens[0], "Who") == 0 || strcmp(tokens[0], "What") == 0){
-            if(strcmp(tokens[1], "is") == 0){
                 if(valid_answer(selected_category, selected_price, path) == true){
                     printf("\n\nYou are Correct!\nGood Job, You have been awarded $%d", selected_price);
                     update_score(players, NUM_PLAYERS, selected_player, selected_price);
@@ -161,7 +160,6 @@ int main(int argc, char *argv[]){
                     printf("\n\nYou are Incorrect!\nNo points have been awarded");
                     remove_question(selected_category, selected_price); 
                 }
-            }
         }
         else{
             printf("\n\nIncorrect Format!\nNo points have been awarded");
