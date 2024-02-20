@@ -35,9 +35,7 @@ question questions[NUM_QUESTIONS] = {
 
 // Displays each of the remaining categories and question dollar values that have not been answered
 void display_categories(void){
-    printf("\t=========================================\n");
     printf("\t| Science   |   Geography   |   History |\n");
-    printf("\t=========================================\n");
     for(int i=0; i <NUM_QUESTIONS; i++){
         if((questions[i].answered == false)){
             printf("\t   %i\t", questions[i].value);
@@ -49,7 +47,6 @@ void display_categories(void){
             printf("\n");
         }
     }
-    printf("\t=========================================\n\n");
 }
 
 // Displays the question for the category and dollar value
