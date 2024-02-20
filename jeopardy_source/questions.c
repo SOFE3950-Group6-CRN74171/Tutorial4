@@ -21,7 +21,7 @@ question questions[NUM_QUESTIONS] = {
     {"History", "She was the first female Prime Minister of the United Kingdom.", "Margaret Thatcher?", 200, false},
     
     {"Science", "This is the smallest bone found in the human body.", "Stapes?", 300, false},
-    {"Geography", "Identify the largest ocean by surface area.", "the Pacific Ocean?", 300, false},
+    {"Geography", "Identify the largest ocean by surface area.", "Pacific Ocean?", 300, false},
     {"History", "This British monarch holds the record for the longest reign.", "Queen Victoria?", 300, false},
     
     {"Science", "The process by which liquid water turns into water vapor.", "Evaporation?", 400, false},
