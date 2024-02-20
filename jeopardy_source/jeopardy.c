@@ -132,6 +132,7 @@ int main(int argc, char *argv[]){
         printf("*********************************************");
         
         // OBTAIN ANSWER
+        printf("\nWho/What is [your answer]? ");
         printf("\nEnter your Answer: ");
         getchar();
         scanf("%[^\n]s", answer);
