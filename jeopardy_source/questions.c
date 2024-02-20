@@ -13,14 +13,14 @@
 // Array of Questions
 question questions[NUM_QUESTIONS] = {
     {"Science", "It's the two gases that make up the majority of Earth's atmosphere.", "Nitrogen and Oxygen?", 100, false},
-    {"Geography", "This mountain range holds the title for the longest in the world.", "the Andes?", 100, false},
-    {"History", "This ancient civilization constructed the Great Pyramids of Giza.", "the Ancient Egyptians?", 100, false},
+    {"Geography", "This mountain range holds the title for the longest in the world.", "Andes?", 100, false},
+    {"History", "This ancient civilization constructed the Great Pyramids of Giza.", "Ancient Egyptians?", 100, false},
     
     {"Science", "Plants use this process to make their own food.", "Photosynthesis?", 200, false},
     {"Geography", "Name the country that is both an island and a continent.", "Australia?", 200, false},
     {"History", "She was the first female Prime Minister of the United Kingdom.", "Margaret Thatcher?", 200, false},
     
-    {"Science", "This is the smallest bone found in the human body.", "the Stapes (in the ear)?", 300, false},
+    {"Science", "This is the smallest bone found in the human body.", "Stapes?", 300, false},
     {"Geography", "Identify the largest ocean by surface area.", "the Pacific Ocean?", 300, false},
     {"History", "This British monarch holds the record for the longest reign.", "Queen Victoria?", 300, false},
     
@@ -29,7 +29,7 @@ question questions[NUM_QUESTIONS] = {
     {"History", "He led the first expedition to successfully circumnavigate the globe.", "Ferdinand Magellan?", 400, false},
     
     {"Science", "This scientific field studies fossils.", "Paleontology?", 500, false},
-    {"Geography", "Identify the sea that doesn't have any coastlines.", "the Sargasso Sea?", 500, false},
+    {"Geography", "Identify the sea that doesn't have any coastlines.", "Sargasso Sea?", 500, false},
     {"History", "This global conflict lasted from 1939 to 1945.", "World War II?", 500, false},
 };
 
