@@ -68,6 +68,7 @@ bool valid_answer(char *category, int value, char *answer){
             }
         }
     }
+    return false;
 }
 
 // Returns true if the question has already been answered
