@@ -13,111 +13,121 @@
 #include "players.h"
 #include "jeopardy.h"
 
+// Put macros or constants here using #define
 #define BUFFER_LEN 256
 
-// Function to tokenize the input string and extract tokens
-void tokenize(char *input, char tokens[4][BUFFER_LEN]);
+// Put global environment variables here
 
-// Function to display the final results of the game
+// Processes the answer from the user containing what is or who is and tokenizes it to retrieve the answer.
+void tokenize(char *input, char **tokens);
+
+// Displays the game results for each player, their name and final score, ranked from first to last place
 void show_results(player *players);
 
-// Function to run the main game loop
-void run_game(char tokens[4][BUFFER_LEN], player *players);
 
-int main(void) {
-    // Array to hold player information
+int main(void)
+{
+    // An array of 4 players, may need to be a pointer if you want it set dynamically
     player players[4];
     
-    // Input buffer
-    char buffer[BUFFER_LEN];
+    // Input buffer and and commands
+    char buffer[BUFFER_LEN] = { 0 };
 
-    // Display game introduction and prompt for player names
+    // Display the game introduction and prompt for players names
+    // initialize each of the players in the array
     printf("Welcome to Jeopardy! Please Enter your Names:\n");
-    for(int i = 0; i < 4; i++) {
+    for(int i=0; i<4; i++){
         scanf("%s", players[i].name);
     }
     printf("Thank you.\n");
 
-    // Tokens array to hold tokenized input
-    char token[4][BUFFER_LEN] = {{0}};
+    // Perform an infinite loop getting command input from users until game ends
+    while (fgets(buffer, BUFFER_LEN, stdin) != NULL)
+    {
+        // Call functions from the questions and players source files
 
-    // Initialize the game and run the main game loop
-    initialize_game();
-    run_game(token, players);
+        char token[4][BUFFER_LEN] = {{0}};
 
-    return 0;
+        
+        initialize_game();
+        run_game(token, players);
+        //free(token);
+        return 0;
+
+    }
+
+    
 }
-
-// Function to display the final results of the game
-void show_results(player *players) {
-    // Loop through each player and display their name and score
-    for(int i = 0; i < 4; i++) {
+void show_results(player *players){
+    for(int i = 0; i <= 4; i++){
         printf("Name: %s\tScore:%d\n", players[i].name, players[i].score);
     }
 }
 
-// Function to tokenize the input string and extract tokens
-void tokenize(char *input, char tokens[4][BUFFER_LEN]) {
-    // Tokenize the input string based on spaces
-    char *token1 = strtok(input, " ");
+void tokenize(char *input, char **tokens){
 
-    // Loop through each token and copy it to the tokens array
-    for(int i = 0; token1 != NULL; i++) {
+    char *token1 = strtok(input, " ");
+    token1 = strtok(input, " ");
+
+    for(int i = 0; token1 != NULL; i++){
         strcpy(tokens[i], token1);
         token1 = strtok(NULL, " ");
     }       
 }
 
-// Function to run the main game loop
-void run_game(char tokens[4][BUFFER_LEN], player *players) {
-    // Calculate the total number of questions
-    int questions_remaining = sizeof(questions) / sizeof(questions[0]);
+void run_game(char **token, player *players){
+    // Execute the game until all questions are answered
+    int questions_remaining = sizeof(questions);
     bool correct;
-    char category[BUFFER_LEN];
+    char *category;  
     int value;
     char response[BUFFER_LEN] = {0};
+    
+    category = (char *) calloc(BUFFER_LEN, sizeof(char));
+    
+    //token = (char *) calloc(256, sizeof(char));
 
-    // Main game loop
-    while(questions_remaining > 0) {
-        // Loop through each player for their turn
-        for(int i = 0; i < 4; i++) {
-            // Prompt the player to choose a question category and value
+
+    while(questions_remaining > 0){
+        for(int i =0; i < sizeof(players); i++){
             printf("%s's Turn\nPlease choose from the following questions\n(hint: first enter category and hit enter, then enter the dollar amount and hit enter):\n\n", players[i].name);
+            
             display_categories();
+            
             printf("\n\n");
             scanf("%s", category);
-            scanf("%d", &value);
+            scanf("%d", value);
             printf("\n");
             
-            // Check if the question has already been answered
-            if(already_answered(category, value)) {
+            if(already_answered(category, value)){
                 printf("Question has already been answered. Please choose another");
                 i--;
             }
-            else {
-                // Display the selected question and get the player's response
+            else{
                 display_question(category, value);
-                scanf("%s", response);                                  
-                tokenize(response, tokens);                               
-                correct = valid_answer(category, value, tokens[2]);
-                if(correct) {
+                scanf("%s", response);                                  //Takes response
+                
+                tokenize(response, token);                               //extracts answer from response
+                correct = valid_answer(category,value,token[2]);
+                if(correct){
                     printf("Correct! You may now choose another question.\n\n");
                     players[i].score += value;
                     i--;
                 }
-                else {
+                else{
                     printf("Unfortunately, that is incorrect, or you forgot to say \"What is/Who is\".\n\n");
                 }
-                // Mark the question as answered and update remaining questions count
                 question_answered(category, value);
                 questions_remaining--;
-                if(questions_remaining <= 0) {
+                if(questions_remaining<=0){
                     break;
                 }
             }                
         }
+        free(category);
     }
     
-    // Display the final results of the game
+    // Display the final results and exit
     show_results(players);
+
 }
