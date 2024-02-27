@@ -25,7 +25,7 @@ question questions[NUM_QUESTIONS] = {
     {"History", "This British monarch holds the record for the longest reign.", "Queen Victoria?", 300, false},
     
     {"Science", "The process by which liquid water turns into water vapor.", "Evaporation?", 400, false},
-    {"Geography", "Name the capital city of Brazil.", "Brasília?", 400, false},
+    {"Geography", "Name the capital city of Brazil.", "Brasilia?", 400, false},
     {"History", "He led the first expedition to successfully circumnavigate the globe.", "Ferdinand Magellan?", 400, false},
     
     {"Science", "This scientific field studies fossils.", "Paleontology?", 500, false},
